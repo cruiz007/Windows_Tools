@@ -35,6 +35,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           get-childItem
+          mkdir "C:\Logs"
           .\Cleanup\Cleanup_Directory.ps1 -Path "C:\Logs" -IncludeSubdirectories -Dryrun
           
       
