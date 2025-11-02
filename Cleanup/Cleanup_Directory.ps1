@@ -15,7 +15,7 @@
 .PARAMETER LogFile
     Optional path to a log file where deleted file paths are recorded.
 
-.PARAMETER WhatIf
+.PARAMETER Dryrun
     If specified, performs a dry-run (shows what would be deleted).
 #>
 
@@ -27,7 +27,7 @@ param (
 
     [string]$LogFile,
 
-    [switch]$WhatIf
+    [switch]$Dryrun
 )
 
 # Calculate threshold date (3 months ≈ 90 days)
@@ -35,7 +35,7 @@ $thresholdDate = (Get-Date).AddDays(-90)
 
 Write-Host "Scanning for files older than $thresholdDate in '$Path'..." -ForegroundColor Cyan
 
-# Get list of files
+# Get list of files that fit the threshold timeframe
 $files = Get-ChildItem -Path $Path -File -Recurse:$IncludeSubdirectories | Where-Object {
     $_.LastWriteTime -lt $thresholdDate
 }
@@ -48,7 +48,7 @@ if ($files.Count -eq 0) {
 Write-Host "`nFound $($files.Count) files older than 3 months." -ForegroundColor Yellow
 
 foreach ($file in $files) {
-    if ($WhatIf) {
+    if ($Dryrun) {
         Write-Host "[DRY-RUN] Would delete: $($file.FullName)"
     } else {
         try {
@@ -64,7 +64,7 @@ foreach ($file in $files) {
     }
 }
 
-if ($WhatIf) {
+if ($Dryrun) {
     Write-Host "`nDry run complete. No files were deleted." -ForegroundColor Cyan
 } elseif ($LogFile) {
     Write-Host "`nLog saved to: $LogFile" -ForegroundColor Green
