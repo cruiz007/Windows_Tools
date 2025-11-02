@@ -11,7 +11,7 @@ It supports dry-run mode, logging, and can be scheduled for automated cleanup.
 
 - Finds and deletes files older than 90 days  
 - Optional recursive search through subdirectories  
-- Supports **dry-run mode** (`-WhatIf`) to preview deletions  
+- Supports **dry-run mode** (`-Dryrun`) to preview deletions  
 - Optional **logging** of deleted files  
 - Error handling and colored console output  
 
@@ -24,12 +24,22 @@ It supports dry-run mode, logging, and can be scheduled for automated cleanup.
 | `-Path` | `string` | ✅ Yes | The directory to scan for old files |
 | `-IncludeSubdirectories` | `switch` | ❌ No | Recursively include subfolders |
 | `-LogFile` | `string` | ❌ No | File path to log deleted files |
-| `-WhatIf` | `switch` | ❌ No | Dry-run mode (shows what would be deleted) |
+| `-Dryrun` | `switch` | ❌ No | Dry-run mode (shows what would be deleted) |
 
 ---
 
 ## Usage Examples
 
 ### Preview what would be deleted (Dry Run)
-```powershell
-.\Clean-OldFiles.ps1 -Path "C:\Logs" -IncludeSubdirectories -WhatIf
+```
+.\Cleanup_Directory.ps1 -Path "C:\Logs" -IncludeSubdirectories -Dryrun
+```
+### Delete files older that 90 days
+```
+.\Cleanup_Directory.ps1 -Path "C:\Logs" -IncludeSubdirectories
+```
+### Delete and output log of action
+```
+.\Cleanup_Directory.ps1 -Path "C:\Logs" -IncludeSubdirectories -LogFile "C:\CleanupLogs\deleted_files.log"
+```
+
