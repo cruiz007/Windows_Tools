@@ -1,3 +1,4 @@
+[![CI](https://github.com/cruiz007/Windows_Tools/actions/workflows/test-ci.yml/badge.svg)](https://github.com/cruiz007/Windows_Tools/actions/workflows/test-ci.yml)
 # Cleanup_Directory.ps1
 
 This is a PowerShell script that scans a specified directory (and optionally its subdirectories) for files older than **3 months (90 days)** and deletes them safely.  
