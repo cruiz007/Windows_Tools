@@ -40,3 +40,8 @@ It supports dry-run mode, logging, and can be scheduled for automated cleanup.
 ```
 .\Cleanup_Directory.ps1 -Path "C:\Logs" -IncludeSubdirectories -LogFile "C:\CleanupLogs\deleted_files.log"
 ```
+
+##Windows task scheduler command
+Program/script: pwsh.exe
+Add arguments: -File "C:\Path\To\Clean-OldFiles.ps1" -Path "C:\Logs" -IncludeSubdirectories
+
